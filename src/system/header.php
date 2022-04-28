@@ -31,7 +31,7 @@ require_once("../db.php");
 
 echo "<html><head><title>System's Page</title>\n";
 echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-echo "<link rel=stylesheet href=\"../Css.php\" type=\"text/css\">\n";
+echo "<link rel=stylesheet href=\"styles.css\" type=\"text/css\">\n";
 
 //echo "<meta http-equiv=\"refresh\" content=\"60\" />";
 if(!ValidSession()) {
@@ -52,12 +52,10 @@ echo "Username: " . $_SESSION["usertable"]["userfullname"] ."<br>\n";
 list($clockstr,$clocktype)=siteclock();
 echo "</td><td bgcolor=\"#eeee00\" align=center nowrap>&nbsp;".$clockstr."&nbsp;</td></tr>\n";
 echo "</table>\n";
-echo "<table border=0 width=\"100%\" align=center>\n";
-echo " <tr>\n";
-echo "  <td align=center><a class=menu style=\"font-weight:bold\" href=contest.php>Contest</a></td>\n";
-//echo "  <td align=center><a class=menu style=\"font-weight:bold\" href=importxml.php>Import</a></td>\n";
-echo "  <td align=center><a class=menu style=\"font-weight:bold\" href=option.php>Options</a></td>\n";
-echo "  <td align=center><a class=menu style=\"font-weight:bold\" href=../index.php>Logout</a></td>\n";
-echo " </tr>\n"; 
-echo "</table>\n";
 ?>
+
+<nav class="menu">
+        <a href="contest.php">Contest</a>
+        <a active href="option.php">Options</a>
+        <a href="../index.php">Logout</a>
+</nav>

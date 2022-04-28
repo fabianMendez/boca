@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+html {
+	line-height: 1.5;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	background-color: #e0e0d0;
+}
+
+.menu {
+	display: flex;
+	justify-content: center;
+	background: #fbbf24;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 1rem;  
+}
+
+.menu a {
+	display: inline-block;
+	padding: 1.25em 1.0em;
+	text-decoration: none;
+	font-size: 17px;
+	transition: background ease 0.2s;
+	color: white;
+	text-transform: uppercase;
+}
+
+.menu a[active] {
+	font-weight: 500;
+}
+
+.menu a:hover {
+	background: #f59e0b;
+}
+
+.formgroup {
+	margin-bottom: 0.5rem;  
+	display: flex;
+	flex-direction: column;
+}
+
+.formgroup label {
+	font-weight: 500;
+	color: rgb(55, 65, 81);
+	font-size: .875rem;
+	line-height: 1.25rem;
+}
+
+.formgroup input,textarea {
+	padding: 0.25rem;
+}
+
+.formgroup input[type=submit] {
+	padding: 8px 16px;
+	border-width: 1px;
+	border-radius: .375rem;
+	cursor: pointer;
+
+	font-weight: 500;
+	font-size: .875rem;
+	line-height: 1.25rem;
+}

@@ -74,49 +74,39 @@ function computeHASH()
 
 <br><br>
 <form name="form1" action="javascript:computeHASH()">
-  <center>
-    <table border="0">
-      <tr> 
-        <td width="35%" align=right>Username:</td>
-        <td width="65%">
-	  <input type="text" readonly name="username" value="<?php echo $a["username"]; ?>" size="20" maxlength="20" />
-        </td>
-      </tr>
-      <tr> 
-        <td width="35%" align=right>User Full Name:</td>
-        <td width="65%">
-	  <input type="text" readonly name="userfull" value="<?php echo $a["userfullname"]; ?>" size="50" maxlength="50" />
-        </td>
-      </tr>
-      <tr> 
-        <td width="35%" align=right>User Description:</td>
-        <td width="65%">
-	  <input type="text" name="userdesc" value="<?php echo $a["userdesc"]; ?>" size="50" maxlength="250" />
-        </td>
-      </tr>
-      <tr> 
-        <td width="35%" align=right>Old Password:</td>
-        <td width="65%">
-	  <input type="password" name="passwordo" size="20" maxlength="200" />
-        </td>
-      </tr>
-      <tr> 
-        <td width="35%" align=right>New Password:</td>
-        <td width="65%">
-	  <input type="password" name="passwordn1" size="20" maxlength="200" />
-        </td>
-      </tr>
-      <tr> 
-        <td width="35%" align=right>Retype New Password:</td>
-        <td width="65%">
-	  <input type="password" name="passwordn2" size="20" maxlength="200" />
-        </td>
-      </tr>
-    </table>
-  </center>
-  <center>
-      <input type="submit" name="Submit" value="Send">
-  </center>
+  <div class="formgroup">
+    <label for="username">Username</label>
+    <input id="username" type="text" readonly name="username" value="<?php echo $a["username"]; ?>" size="20" maxlength="20">
+  </div>
+
+  <div class="formgroup">
+    <label for="fullname">User Full Name</label>
+    <input id="fullname" type="text" readonly name="userfull" value="<?php echo $a["userfullname"]; ?>" size="50" maxlength="50">  
+  </div>
+
+  <div class="formgroup">
+    <label for="userdesc">User Description</label>
+    <textarea id="userdesc" type="text" name="userdesc" value="<?php echo $a["userdesc"]; ?>" size="50" maxlength="250"></textarea>
+  </div>
+
+  <div class="formgroup">
+    <label for="passwordo">Old Password</label>
+    <input id="passwordo" type="password" name="passwordo" size="20" maxlength="200">
+  </div>
+
+  <div class="formgroup">
+    <label for="passwordn1">New Password</label>
+    <input id="passwordn1" type="password" name="passwordn1" size="20" maxlength="200">
+  </div>
+
+  <div class="formgroup">
+    <label for="passwordn2">Retype New Password</label>
+    <input id="passwordn2" type="password" name="passwordn2" size="20" maxlength="200">
+  </div>
+
+  <div class="formgroup">
+    <input type="submit" name="Submit" value="Send">
+  </div>
 </form>
 
 </body>
