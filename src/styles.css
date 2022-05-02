@@ -15,7 +15,7 @@ body {
 	background: #fbbf24;
 	margin: 0;
 	padding: 0;
-	margin-bottom: 1rem;  
+	margin-bottom: 1rem;
 }
 
 .menu a {
@@ -36,8 +36,13 @@ body {
 	background: #f59e0b;
 }
 
+.form {
+	max-width: 60vw;
+	margin: 0 auto;
+}
+
 .formgroup {
-	margin-bottom: 0.5rem;  
+	margin-bottom: 0.5rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -49,11 +54,13 @@ body {
 	line-height: 1.25rem;
 }
 
-.formgroup input,textarea {
+.formgroup input,
+textarea {
 	padding: 0.25rem;
 }
 
-.formgroup input[type=submit] {
+.formgroup input[type=submit],
+.formgroup input[type=reset] {
 	padding: 8px 16px;
 	border-width: 1px;
 	border-radius: .375rem;

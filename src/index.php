@@ -57,7 +57,7 @@ require_once('version.php');
 <title>BOCA Online Contest Administrator <?php echo $BOCAVERSION; ?> - Login</title>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="Css.php" type="text/css">
+<link rel="stylesheet" href="styles.css">
 <script language="JavaScript" src="sha256.js"></script>
 <script language="JavaScript">
 function computeHASH()
@@ -106,44 +106,21 @@ if(function_exists("globalconf") && function_exists("sanitizeVariables")) {
 }
 ?>
 </head>
-<body onload="document.form1.name.focus()">
-<table width="100%" height="100%" border="0">
-  <tr align="center" valign="middle"> 
-    <td> 
-      <form name="form1" action="javascript:computeHASH()">
-        <div align="center"> 
-          <table border="0" align="center">
-            <tr> 
-              <td nowrap>
-                <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="+1">
-				BOCA Login</font></div>
-              </td>
-            </tr>
-            <tr>
-              <td valign="top"> 
-                <table border="0" align="left">
-                  <tr> 
-                    <td><font face="Verdana, Arial, Helvetica, sans-serif" > 
-                      Name
-                      </font></td>
-                    <td> 
-                      <input type="text" name="name">
-                    </td>
-                  </tr>
-                  <tr> 
-                    <td><font face="Verdana, Arial, Helvetica, sans-serif" >Password</font></td>
-                    <td> 
-                      <input type="password" name="password">
-                    </td>
-                  </tr>
-                </table>
-                <input type="submit" name="Submit" value="Login">
-              </td>
-            </tr>
-          </table>
-        </div>
-      </form>
-    </td>
-  </tr>
-</table>
+<body onload="document.form1.name.focus()" style="display: flex; flex-direction: column; height: 100%; margin: 0; padding: 0;">
+	<main style="display: grid; align-content: center; justify-content: center; height: 100%">
+		<form class="form" name="form1" action="javascript:computeHASH()">
+			<h2>BOCA Login</h2>
+			<div class="formgroup"> 
+				<label for="name">Name</label>
+				<input type="text" name="name">
+			</div>
+			<div class="formgroup"> 
+				<label for="password">Password</label>
+				<input type="password" name="password">
+			</div>
+			<div class="formgroup">
+				<input type="submit" name="Submit" value="Login">
+			</div>
+		</form>
+	</main>
 <?php include('footnote.php'); ?>

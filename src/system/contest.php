@@ -81,7 +81,7 @@ if (isset($_POST["Submit3"]) && isset($_POST["penalty"]) && is_numeric($_POST["p
 ?>
 <br>
 
-<form name="form1" enctype="multipart/form-data" method="post" action="contest.php">
+<form name="form1" class="form" enctype="multipart/form-data" method="post" action="contest.php">
   <input type=hidden name="confirmation" value="noconfirm" />
   <script language="javascript">
     function conf() {
@@ -104,110 +104,98 @@ if (isset($_POST["Submit3"]) && isset($_POST["penalty"]) && is_numeric($_POST["p
   </script>
   <br><br>
   <center>
-    <table border="0">
-      <tr>
-        <td width="35%" align=right>Contest number:</td>
-        <td width="65%">
-<select onChange="contestch()" name="contest">
-<?php 
-$cs = DBAllContestInfo();
-$isfake=false;
-for ($i=0; $i<count($cs); $i++) {
-  echo "<option value=\"" . $cs[$i]["contestnumber"] . "\" ";
-  if ($contest == $cs[$i]["contestnumber"]) {
-    echo "selected";
-	if($cs[$i]["contestnumber"] == 0) $isfake=true;
-  }
-  echo ">" . $cs[$i]["contestnumber"] . ($cs[$i]["contestactive"]=="t"?"*":"") ."</option>\n";
-}
-?>
-<option value="new">new</option>
-</select>
-        </td>
-      </tr>
+    <?php 
+    $cs = DBAllContestInfo();
+    $isfake=false;
+    for ($i=0; $i<count($cs); $i++) {
+      if ($contest == $cs[$i]["contestnumber"]) {
+        if($cs[$i]["contestnumber"] == 0) $isfake=true;
+      }
+    }
+    ?>
+
+    <?php if ($isfake) { ?>
+      <h2>Select a contest or create a new one.</h2>
+    <?php } ?>
+
+    <div class="formgroup" style="max-width: 40vw">
+      <label for="contestnumber">Contest number:</label>
+      <select id="contestnumber" onChange="contestch()" name="contest">
+      <?php 
+      for ($i=0; $i<count($cs); $i++) {
+        echo "<option value=\"" . $cs[$i]["contestnumber"] . "\" ";
+        if ($contest == $cs[$i]["contestnumber"]) {
+          echo "selected";
+        }
+        echo ">" . $cs[$i]["contestnumber"] . ($cs[$i]["contestactive"]=="t"?"*":"") ."</option>\n";
+      }
+      ?>
+        <option value="new">new</option>
+      </select>
+    </div>
 	<?php if(!$isfake) { ?>
-      <tr>
-        <td width="35%" align=right>Name:</td>
-        <td width="65%">
-          <input type="text" <?php if(!$main) echo "readonly"; ?> name="name" value="<?php echo $ct["contestname"]; ?>" size="50" maxlength="50" />
-        </td>
-      </tr>
-      <tr>
-        <td width="35%" align=right>Start date:</td>
-        <td width="65%"> hh:mm
-          <input type="text" <?php if(!$main) echo "readonly"; ?> name="startdateh" value="<?php echo date("H", $ct["conteststartdate"]); ?>" size="2" maxlength="2" />
-          :
-          <input type="text" <?php if(!$main) echo "readonly"; ?> name="startdatemin" value="<?php echo date("i", $ct["conteststartdate"]); ?>" size="2" maxlength="2" />
-          &nbsp; &nbsp; dd/mm/yyyy
-          <input type="text" <?php if(!$main) echo "readonly"; ?> name="startdated" value="<?php echo date("d", $ct["conteststartdate"]); ?>" size="2" maxlength="2" />
-          /
-          <input type="text" <?php if(!$main) echo "readonly"; ?> name="startdatem" value="<?php echo date("m", $ct["conteststartdate"]); ?>" size="2" maxlength="2" />
-          /
-          <input type="text" <?php if(!$main) echo "readonly"; ?> name="startdatey" value="<?php echo date("Y", $ct["conteststartdate"]); ?>" size="4" maxlength="4" />
-        </td>
-      </tr>
-      <tr>
+      <div class="formgroup">
+        <label for="name">Name:</label>
+        <input id="name" type="text" <?php if(!$main) echo "readonly"; ?> name="name" value="<?php echo $ct["contestname"]; ?>" size="50" maxlength="50" />
+      </div>
+      <div class="formgroup">
+        <label for="startdatetime">Start time:</label>
+        <input type="datetime-local" name="startdate" id="startdate">
+      </div>
+      <div class="formgroup">
         <td width="35%" align=right>Duration (in minutes):</td>
         <td width="65%">
           <input type="text" name="duration" <?php if(!$main) echo "readonly"; ?> value="<?php echo $ct["contestduration"]/60; ?>" size="20" maxlength="20" />
         </td>
-      </tr>
-      <tr>
+      </div>
+      <div class="formgroup">
         <td width="35%" align=right>Stop answering (in minutes):</td>
         <td width="65%">
           <input type="text" name="lastmileanswer" <?php if(!$main) echo "readonly"; ?> value="<?php echo $ct["contestlastmileanswer"]/60; ?>" size="20" maxlength="20" />
         </td>
-      </tr>
-      <tr>
+      </div>
+      <div class="formgroup">
         <td width="35%" align=right>Stop scoreboard (in minutes):</td>
         <td width="65%">
           <input type="text" name="lastmilescore" <?php if(!$main) echo "readonly"; ?> value="<?php echo $ct["contestlastmilescore"]/60; ?>" size="20" maxlength="20" />
         </td>
-      </tr>
-      <tr>
+      </div>
+      <div class="formgroup">
         <td width="35%" align=right>Penalty (in minutes):</td>
         <td width="65%">
           <input type="text" name="penalty" <?php if(!$main) echo "readonly"; ?> value="<?php echo $ct["contestpenalty"]/60; ?>" size="20" maxlength="20" />
         </td>
-      </tr>
-      <tr>
+      </div>
+      <div class="formgroup">
         <td width="35%" align=right>Max file size allowed for teams (in KB):</td>
         <td width="65%">
           <input type="text" name="maxfilesize" <?php if(!$main) echo "readonly"; ?> 
                value="<?php echo $ct["contestmaxfilesize"]/1000; ?>" size="20" maxlength="20" />
         </td>
-      </tr>
-  <tr><td width="35%" align=right>
-    Your PHP config. allows at most:</td>
-  <td width="65%">
-    <?php echo ini_get('post_max_size').'B(max. post) and '.ini_get('upload_max_filesize').'B(max. filesize)'; ?>
-  </td></tr>
-      <tr>
-							<td width="35%" align=right>Contest main site URL (IP/bocafolder):</td>
-        <td width="65%">
-          <input type="text" name="mainsiteurl" value="<?php echo $ct["contestmainsiteurl"]; ?>" size="40" maxlength="200" />
-        </td>
-      </tr>
-      <tr>
-        <td width="35%" align=right>Contest main site number:</td>
-        <td width="65%">
-          <input type="text" name="mainsite" value="<?php echo $ct["contestmainsite"]; ?>" size="4" maxlength="4" />
-        </td>
-      </tr>
-      <tr>
-        <td width="35%" align=right>Contest local site number:</td>
-        <td width="65%">
-          <input type="text" name="localsite" value="<?php echo $ct["contestlocalsite"]; ?>" size="4" maxlength="4" />
-        </td>
-      </tr>
+      </div>
+      <p>Your PHP config. allows at most:
+        <?php echo ini_get('post_max_size').'B(max. post) and '.ini_get('upload_max_filesize').'B(max. filesize)'; ?>
+      </p>
+      <div class="formgroup">
+        <label for="mainsiteurl">Contest main site URL (IP/bocafolder):</label>
+        <input type="text" id="mainsiteurl" name="mainsiteurl" value="<?php echo $ct["contestmainsiteurl"]; ?>" size="40" maxlength="200" />
+      </div>
+      <div class="formgroup">
+        <label for="mainsite">Contest main site number:</label>
+        <input type="text" name="mainsite" value="<?php echo $ct["contestmainsite"]; ?>" size="4" maxlength="4" />
+      </div>
+      <div class="formgroup">
+        <label for="localsite">Contest local site number:</label>
+        <input type="text" id="localsite" name="localsite" value="<?php echo $ct["contestlocalsite"]; ?>" size="4" maxlength="4" />
+      </div>
     </table>
   </center>
-  <center>
+  <div class="formgroup">
       <input type="submit" name="Submit3" value="Send" onClick="conf()">
       <input type="submit" name="Submit3" value="Activate" onClick="conf()">
       <input type="reset" name="Submit4" value="Clear">
-  </center>
-							<?php } else { echo "<br><br><center>Select a contest or create a new one.</center><br><br>"; } ?>
+  </div>
+  <?php }?>
 </form>
 
 </body>

@@ -73,7 +73,7 @@ function computeHASH()
 </script>
 
 <br><br>
-<form name="form1" action="javascript:computeHASH()">
+<form name="form1" class="form" action="javascript:computeHASH()">
   <div class="formgroup">
     <label for="username">Username</label>
     <input id="username" type="text" readonly name="username" value="<?php echo $a["username"]; ?>" size="20" maxlength="20">
